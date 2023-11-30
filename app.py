@@ -15,7 +15,22 @@ def load_data(data):
 
 
 def main():
+    df = None
+    
+    st.set_page_config(
+        page_title = "Small Tableau",
+        layout = "wide"
+    )
     st.title("Small Tableau")
+    
+    with st.sidebar:
+        st.header("Upload")
+        with st.form("Upload CSV-File"):
+            file = st.file_uploader("Upload a .csv file", type=["csv"])
+            submitted = st.form_submit_button("Submit")
+    if submitted:
+        df = load_data(file)
+        st.dataframe(df)
 
 
 
