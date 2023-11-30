@@ -35,10 +35,35 @@ def main():
     
     with st.sidebar:
         st.header("Upload")
+        st.markdown("This may take some seconds.")
         with st.form("Upload CSV-File"):
             file = st.file_uploader("Upload a .csv file", type=["csv"])
             submitted = st.form_submit_button("Submit")
-            
+        
+        st.markdown('''<small>__Anleitung__<br>
+                1. Wähle zuerst eine CSV-Datei mit den zu visualisierenden Daten aus und lade sie hoch.<br>
+                2. Je nach Größe der Datei (Limit 200MB) dauert es einige Sekunden, bis die grafische Benutzeroberfläche von PyGWalker erscheint.<br>
+                3. Verwende die grafische Oberfläche, um Daten ähnlich wie bei Tableau per Drag and Drop zu visualisieren.<br>
+                <br>
+                __Allgemeines__<br>
+                Diese App verwendet [Python](https://www.python.org/), [Streamlit](https://streamlit.io/) und die [PyGWalker](https://kanaries.net/home/pygwalker) library.<br>
+                Der Quelltext dieses Dashboards liegt auf [GitHub](https://github.com/alexmahesh/Tableau_Alternative).</small>''',
+               unsafe_allow_html = True)
+        
+        st.markdown('''<small>__Impressum__<br>
+                Verantwortlich für den Inhalt:<br>
+                Alexander Schuppe<br>
+                Email: spmail@aleku.eu<br>
+                <br>
+                __Datenschutz__<br>
+                Dieses Dashboard speichert keine persönlichen Daten und verwendet keine Cookies.<br>
+                Die Seite verwendet das kostenlose Hosting-Angebot von [Streamlit](https://streamlit.io/). Nähere Informationen zu deren Datenschutzangaben finden sie unter: [Streamlit Privacy Policy]().<br>
+                <br>
+                __Haftungsausschluss__<br>
+                Es wird keine Garantie für die Funktionen der App übernommen.
+                </small>''',
+                unsafe_allow_html = True)
+        
     if submitted:
         df = load_data(file)
         with st.expander("Data Table"):
